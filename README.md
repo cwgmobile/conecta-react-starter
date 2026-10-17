@@ -1,112 +1,280 @@
 # Conecta+ React Starter Kit — V1.0
 
-Template profissional para iniciar **aplicações web React + TypeScript** com estrutura modular, documentação e testes. Projeto independente do KURIO, sem regras de negócio, dados de clientes ou integrações reais.
+**Template React + TypeScript para desenvolvimento de aplicações web modernas, modulares, testáveis e documentadas.**
+
+Desenvolvido como base reutilizável para projetos da **Conecta+ — Soluções Digitais**, com foco em organização de código, qualidade, manutenção e evolução contínua.
+
+O projeto é independente do KURIO e não contém regras de negócio, dados de clientes ou integrações reais.
 
 ## 1. Tecnologias
-- React 19, TypeScript 5, Vite 6
-- React Router 7
-- Tailwind CSS 3, Lucide React
-- Axios e TanStack Query
-- Vitest + Testing Library (unitários)
-- Playwright (E2E desktop e mobile)
 
-## 2. Funcionalidades iniciais
-- Home responsiva de apresentação da Conecta+
-- Layout compartilhado e componente de botão reutilizável
-- Roteamento e página 404
-- Cliente HTTP configurável via variável de ambiente
-- Exemplos de testes unitários e E2E
-- Documentação e checklists para o ciclo de desenvolvimento
+| Tecnologia | Finalidade |
+|---|---|
+| React 19 | Construção da interface |
+| TypeScript 5 | Tipagem estática |
+| Vite 6 | Ambiente de desenvolvimento e build |
+| React Router 7 | Navegação entre páginas |
+| Tailwind CSS 3 | Estilização responsiva |
+| Lucide React | Biblioteca de ícones |
+| Axios | Cliente HTTP |
+| TanStack Query | Gerenciamento de consultas e cache |
+| Vitest + Testing Library | Testes unitários |
+| Playwright | Testes E2E em desktop e mobile |
 
-**Importante:** o símbolo `C+` é provisório. Substituir pelo **arquivo original da logo oficial** quando disponível. Não há backend, login real, banco, API simulada, pagamentos ou aplicativo React Native.
+## 2. Funcionalidades implementadas
+
+- Página inicial responsiva com identidade visual da Conecta+.
+- Logo oficial em `public/img/logo.png`.
+- Layout compartilhado entre páginas.
+- Componente de botão reutilizável.
+- Roteamento com React Router.
+- Página personalizada para rotas inexistentes (404).
+- Cliente HTTP configurável por variável de ambiente.
+- Testes unitários com Vitest.
+- Testes E2E com Playwright.
+- Documentação e checklists para desenvolvimento e entrega.
+
+O projeto não inclui backend, autenticação real, banco de dados, pagamentos ou aplicativo React Native.
 
 ## 3. Pré-requisitos
-- Node.js 20.19+ ou 22.12+ (compatível com Vite 6; prefira LTS atualizado)
-- npm
-- Git (recomendado)
+
+- Node.js LTS compatível com as dependências instaladas.
+- npm.
+- Git.
+- Navegador atualizado.
 
 ## 4. Instalação
+
+Clone o repositório:
+
+```bash
+git clone https://github.com/cwgmobile/conecta-react-starter.git
+cd conecta-react-starter
+```
+
+Instale as dependências:
+
 ```bash
 npm install
+```
+
+Configure o ambiente:
+
+```bash
 cp .env.example .env.local
+```
+
+No Windows PowerShell:
+
+```powershell
+Copy-Item .env.example .env.local
+```
+
+Inicie a aplicação:
+
+```bash
 npm run dev
 ```
-No Windows PowerShell, substitua `cp` por `Copy-Item .env.example .env.local`.
-Abra `http://localhost:5173`.
 
-## 5. Build de produção
+Acesse:
+
+http://localhost:5173
+
+**Observação para Windows:** caso o PowerShell bloqueie a execução de `npm.ps1`, utilize `npm.cmd` nos comandos.
+
+## 5. Estrutura do projeto
+
+```text
+conecta-react-starter/
+├── docs/
+├── public/
+│   └── img/
+│       └── logo.png
+├── src/
+│   ├── api/
+│   ├── assets/
+│   ├── auth/
+│   ├── components/
+│   │   ├── layout/
+│   │   └── ui/
+│   ├── contexts/
+│   ├── hooks/
+│   ├── pages/
+│   ├── routes/
+│   ├── services/
+│   ├── styles/
+│   ├── types/
+│   ├── utils/
+│   ├── App.tsx
+│   └── main.tsx
+├── tests/
+│   ├── e2e/
+│   └── unit/
+├── index.html
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+└── vitest.config.ts
+```
+
+### Responsabilidades
+
+- `api/`: configuração da comunicação HTTP.
+- `assets/`: recursos locais da aplicação.
+- `auth/`: espaço reservado à autenticação e autorização.
+- `components/`: componentes reutilizáveis e layouts.
+- `contexts/`: futuros contextos e provedores compartilhados.
+- `hooks/`: hooks personalizados.
+- `pages/`: componentes de páginas.
+- `routes/`: configuração das rotas.
+- `services/`: futuros serviços organizados por domínio.
+- `styles/`: estilos globais.
+- `types/`: definições de tipos compartilhados.
+- `utils/`: funções utilitárias.
+- `tests/`: testes automatizados.
+- `docs/`: documentação técnica e operacional.
+
+Algumas pastas estão preparadas para expansões futuras e ainda não possuem implementações funcionais.
+
+## 6. Build de produção
+
 ```bash
 npm run typecheck
 npm run build
 npm run preview
 ```
-O build gera `dist/`, que **não** deve ser versionado. Para hospedagem SPA, configure fallback de rotas para `index.html`.
 
-## 6. Testes
-### Unitários
+O build gera a pasta `dist/`, que não deve ser versionada.
+
+Para publicar uma SPA, o servidor de hospedagem deve permitir que as rotas da aplicação sejam atendidas pelo `index.html`.
+
+## 7. Testes automatizados
+
+### Testes unitários — Vitest
+
 ```bash
-npm test
-npm run test:watch
+npm run test
 ```
-### E2E — Playwright
+
+**Resultado registrado:**
+
+- 1 arquivo de teste aprovado.
+- 1 teste aprovado.
+- 0 falhas.
+
+Arquivo: `tests/unit/Button.test.tsx`.
+
+O teste verifica a renderização do botão e a execução de seu evento de clique.
+
+### Testes E2E — Playwright
+
 ```bash
 npx playwright install chromium
 npm run test:e2e
-npm run test:e2e -- --project=chromium-desktop
-npm run test:e2e -- --project=mobile-chrome
-npm run test:e2e:report
 ```
-Os testes E2E iniciam automaticamente o servidor Vite local. Relatório HTML em `playwright-report/`.
 
-### Lighthouse (auditoria manual)
-Depois do build, execute `npm run preview` e audite a URL no Chrome DevTools → Lighthouse. Registre as métricas no plano de testes. **Não há pontuações aferidas nesta versão.**
+**Resultado registrado:**
 
-## 7. Estrutura
-- `src/api`: cliente HTTP e configuração de comunicação
-- `src/assets`: imagens e arquivos locais
-- `src/auth`: futuras regras de autenticação e autorização
-- `src/components/layout`: layout compartilhado
-- `src/components/ui`: componentes reutilizáveis
-- `src/contexts`: providers/contextos de domínio
-- `src/hooks`: hooks customizados
-- `src/pages`: telas
-- `src/routes`: rotas
-- `src/services`: serviços por domínio
-- `src/styles`: estilos globais
-- `src/types`: tipos compartilhados
-- `src/utils`: funções utilitárias
-- `tests/unit`: testes unitários
-- `tests/e2e`: testes de interface completos
-- `docs`: diário, plano de testes, problemas e checklist
+- 4 testes aprovados.
+- 0 falhas.
+- Execução em Chromium desktop e mobile.
+- Duração informada: 4,4 segundos.
 
-## 8. Validação de produção
-1. `npm run build` sem erros.
-2. Abrir `npm run preview` em desktop e mobile.
-3. Confirmar rotas e atualização direta de URL.
-4. Testar formulários, API e autenticação quando implementados.
-5. Executar Playwright e registrar resultados reais.
-6. Auditar acessibilidade, performance, boas práticas e SEO.
-7. Registrar limitações conhecidas antes da entrega.
+Cenários validados:
 
-## 9. Limitações
-- Template inicial; nenhuma regra de negócio implementada.
-- Sem autenticação real e sem backend.
-- Sem testes de integração de API externa.
-- Sem garantia de compatibilidade com React Native: este é um starter **React Web**.
-- Logo original ainda não incorporada.
-- Dependências e testes devem ser instalados/executados no ambiente de destino; este pacote não inclui `node_modules` nem `package-lock.json`.
+| Cenário | Desktop | Mobile |
+|---|---|---|
+| Página inicial apresenta marca e recursos | Aprovado | Aprovado |
+| Rota inexistente apresenta página 404 | Aprovado | Aprovado |
 
-## 10. Próximos passos
-- Inserir logo oficial e ajustar tokens de identidade visual.
-- Homologar instalação, build e testes.
-- Criar repositório Git independente e marcar versão inicial.
-- Para novo cliente: copiar template, trocar marca, criar domínio, registrar decisões e adicionar testes.
+Para visualizar o relatório HTML:
 
-## 11. Licença e uso
-Template de trabalho Conecta+. Definir licença de distribuição antes de publicar como código aberto.
+```bash
+npx playwright show-report
+```
 
+### Resumo da homologação
 
-## 12. Documentação para reutilizar este starter
-Antes de iniciar um produto novo, leia [`docs/PROJECT_TEMPLATE_GUIDE.md`](docs/PROJECT_TEMPLATE_GUIDE.md), preencha o [`briefing`](docs/PROJECT_BRIEF_TEMPLATE.md) e siga o [`checklist de novo projeto`](docs/NEW_PROJECT_CHECKLIST.md). Convenções, testes, diário, problemas, release e entrega estão em `docs/`. **Não reutilize resultados de testes nem métricas de outros projetos.**
+| Verificação | Situação |
+|---|---|
+| Inicialização local | Aprovada |
+| Exibição da logo oficial | Confirmada visualmente |
+| Build de produção | Concluído sem erros, conforme execução local |
+| Vitest | 1/1 aprovado |
+| Playwright | 4/4 aprovados |
+| Typecheck isolado | Pendente de confirmação |
+| Lighthouse | Pendente de medição |
 
-**Status de homologação informado:** `npm.cmd install` executado e home aberta no navegador. Build, typecheck e testes automatizados ainda não foram reportados como executados.
+Os resultados representam os cenários executados nesta versão e não constituem garantia de ausência de defeitos.
+
+## 8. Documentação técnica
+
+O projeto mantém documentos Markdown para apoiar o desenvolvimento, a manutenção e a reutilização do template.
+
+| Documento | Finalidade |
+|---|---|
+| [Guia de reutilização](docs/PROJECT_TEMPLATE_GUIDE.md) | Iniciar novos projetos |
+| [Briefing](docs/PROJECT_BRIEF_TEMPLATE.md) | Levantar requisitos |
+| [Arquitetura e convenções](docs/ARCHITECTURE_AND_CONVENTIONS.md) | Padronizar o código |
+| [Checklist de novo projeto](docs/NEW_PROJECT_CHECKLIST.md) | Preparar novas aplicações |
+| [Diário de desenvolvimento](docs/DEVELOPMENT_LOG.md) | Registrar evolução |
+| [Plano de testes](docs/TEST_PLAN_AND_RESULTS.md) | Documentar validações |
+| [Registro de problemas](docs/ISSUE_REGISTER.md) | Acompanhar correções |
+| [Checklist de release](docs/RELEASE_CHECKLIST.md) | Preparar entregas |
+| [Modelo de handoff](docs/HANDOFF_TEMPLATE.md) | Transferir conhecimento |
+
+### Manual Técnico Conecta+
+
+Está planejada uma documentação educacional complementar, com explicações de cada pasta, arquivo, função, importação e decisão arquitetural.
+
+Os capítulos serão adicionados progressivamente ao repositório, acompanhando a evolução do projeto.
+
+## 9. Boas práticas adotadas
+
+- Separação de responsabilidades.
+- Componentização.
+- Tipagem com TypeScript.
+- Roteamento organizado.
+- Testes unitários e E2E.
+- Versionamento com Git.
+- Commits descritivos.
+- Documentação em Markdown.
+- Exclusão de dependências e artefatos gerados pelo `.gitignore`.
+
+## 10. Limitações conhecidas
+
+- Não possui regras de negócio implementadas.
+- Não possui autenticação real.
+- Não possui backend ou banco de dados.
+- Não inclui integração funcional com APIs externas.
+- Não possui testes de integração com backend.
+- Não é um projeto React Native.
+- As métricas Lighthouse ainda não foram aferidas.
+- A cobertura de testes é inicial e deverá crescer conforme novas funcionalidades forem adicionadas.
+
+## 11. Evolução do projeto
+
+As próximas melhorias incluem:
+
+- Ampliação do manual técnico.
+- Revisão contínua da documentação.
+- Expansão dos testes automatizados.
+- Verificação de acessibilidade, desempenho e SEO.
+- Aperfeiçoamento dos componentes reutilizáveis.
+- Preparação de exemplos para novos projetos.
+
+Cada evolução relevante será registrada em commits específicos.
+
+## 12. Licença e utilização
+
+Projeto desenvolvido para a Conecta+ — Soluções Digitais.
+
+A disponibilização pública do código no GitHub não concede automaticamente uma licença de reutilização, modificação ou distribuição por terceiros. As condições de licenciamento poderão ser definidas futuramente.
+
+---
+
+**Conecta+ — Soluções Digitais**
+
+*Desenvolvimento com organização, qualidade, testes e documentação.*
+
+**Repositório:** https://github.com/cwgmobile/conecta-react-starter
