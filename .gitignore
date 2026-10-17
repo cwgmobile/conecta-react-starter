@@ -1,0 +1,28 @@
+# Dependências
+node_modules/
+
+# Compilação
+dist/
+*.tsbuildinfo
+
+# Variáveis de ambiente e informações sensíveis
+.env
+.env.*
+!.env.example
+
+# Testes e relatórios
+playwright-report/
+test-results/
+coverage/
+
+# Logs
+*.log
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Configurações locais do editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
